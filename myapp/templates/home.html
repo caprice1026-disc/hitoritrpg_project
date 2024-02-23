@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Game Home</title>
+</head>
+<body>
+    <h1>Welcome to the Game</h1>
+    <form action="{% url 'game_start' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Game Start</button>
+    </form>
+</body>
+</html>

@@ -33,3 +33,14 @@ class Player(models.Model):
         }
         self.status = json.dumps(default_status)
         self.save()
+
+class GameState(models.Model):
+    player = models.OneToOneField(Player, on_delete=models.CASCADE, related_name='game_state')
+    current_stage = models.CharField(max_length=100, help_text="プレイヤーが現在いるステージ")
+    # GMとユーザーのログを格納するprogressフィールド
+    progress = models.JSONField(default=list, help_text="GMとユーザーの対話ログ")
+    # アイテムの名前と個数を管理するインベントリ
+    inventory = models.JSONField(default=dict, help_text="プレイヤーの持っているアイテムとその個数")
+
+    def __str__(self):
+        return f"ゲーム状況: {self.player.name}"

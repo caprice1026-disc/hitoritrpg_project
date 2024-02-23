@@ -1,6 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 import openai
+
+@login_required
+def home_view(request):
+    # ホーム画面を表示
+    return render(request, 'home.html')
+    
+    
 
 @login_required
 def game_session(request):
