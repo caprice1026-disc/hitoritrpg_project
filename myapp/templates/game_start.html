@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Start</title>
+    <!-- Bootstrap CSS などのスタイルシートのリンクを追加 -->
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Game!</h1>
+        <p>準備ができたら、「ゲーム開始」ボタンをクリックしてください。</p>
+        
+        <!-- 世界観選択とプレイヤー設定画面へ進むためのフォーム -->
+        <form action="{% url 'world_setting' %}" method="get">
+            <button type="submit" class="btn btn-primary">ゲーム開始</button>
+        </form>
+    </div>
+</body>
+</html>

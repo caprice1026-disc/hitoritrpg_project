@@ -31,3 +31,12 @@ def game_start_view(request):
     # 新しいゲームセッションを開始するための準備（世界観選択など）
     return redirect('world_setting')  # 世界観設定やプレイヤー設定画面のURL名
 
+@login_required
+def world_setting_view(request):
+    if request.method == 'POST':
+        # フォームからの入力を処理するようにする
+        # 世界観設定とプレイヤー設定を保存するようにする
+        return redirect('game_main')  # ゲームのメイン画面にリダイレクト
+    else:
+        # 世界観選択とプレイヤー設定フォームを表示
+        return render(request, 'world_setting.html')

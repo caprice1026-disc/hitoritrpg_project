@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import home_view, game_start_view
+from .views import home_view, game_start_view, world_setting_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -25,4 +25,5 @@ urlpatterns = [
     # 認証用URLを追加
     path('', home_view, name='home'),
     path('game_start/', game_start_view, name='game_start'),
+    path('world_setting/', world_setting_view, name='world_setting'),
 ]
