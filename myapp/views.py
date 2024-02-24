@@ -6,7 +6,7 @@ import os
 
 client = OpenAI()
 
-@login_required
+# @login_required ここログインいらない気がする
 def home_view(request):
     # ホーム画面を表示
     return render(request, 'home.html')
