@@ -16,10 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from .views import home_view, game_start_view
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     # 認証用URLの追加
     path('accounts/', include('django.contrib.auth.urls')),  
     # 認証用URLを追加
+    path('', home_view, name='home'),
+    path('game_start/', game_start_view, name='game_start'),
 ]
