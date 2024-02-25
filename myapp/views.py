@@ -3,6 +3,8 @@ from django.contrib.auth.decorators import login_required
 from .models import Player, GameState, WorldSetting
 from openai import OpenAI
 import os
+from .forms import WorldSettingForm
+from .models import WorldSetting
 
 client = OpenAI()
 
@@ -40,3 +42,19 @@ def world_setting_view(request):
     else:
         # 世界観選択とプレイヤー設定フォームを表示
         return render(request, 'world_setting.html')
+
+@login_required
+def world_setting_view(request):
+    try:
+        world_setting = WorldSetting.objects.get(user=request.user)
+        form = WorldSettingForm(request.POST or None, instance=world_setting)
+    except WorldSetting.DoesNotExist:
+        form = WorldSettingForm(request.POST or None)
+
+    if request.method == 'POST' and form.is_valid():
+        world_setting = form.save(commit=False)
+        world_setting.user = request.user
+        world_setting.save()
+        return redirect('game_main')  # ゲームのメイン画面にリダイレクト
+
+    return render(request, 'world_setting.html', {'form': form})
