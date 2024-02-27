@@ -4,6 +4,7 @@ from .models import Player, GameState, WorldSetting
 from openai import OpenAI
 import os
 
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY')
 client = OpenAI()
 
 @login_required
